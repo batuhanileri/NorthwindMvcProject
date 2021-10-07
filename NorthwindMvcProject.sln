@@ -36,6 +36,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcWebUI", "MvcWebUI\MvcWeb
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcWebUI.Tests", "MvcWebUI.Tests\MvcWebUI.Tests.csproj", "{2C69A0D8-3265-4022-8F05-3E5402982F96}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NorthwindInterfaces", "NorthwindInterfaces\NorthwindInterfaces.csproj", "{37E95C17-424E-4936-BB51-BB344D0B8284}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -70,6 +72,10 @@ Global
 		{2C69A0D8-3265-4022-8F05-3E5402982F96}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2C69A0D8-3265-4022-8F05-3E5402982F96}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2C69A0D8-3265-4022-8F05-3E5402982F96}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37E95C17-424E-4936-BB51-BB344D0B8284}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37E95C17-424E-4936-BB51-BB344D0B8284}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37E95C17-424E-4936-BB51-BB344D0B8284}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37E95C17-424E-4936-BB51-BB344D0B8284}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
