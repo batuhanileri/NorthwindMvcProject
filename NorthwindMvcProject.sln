@@ -12,6 +12,7 @@ EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Northwind.WcfIISHost(1)", "Northwind.WcfIISHost\", "{658A757A-C284-44B4-8617-69B615A82D9B}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.7.2"
+		ProjectReferences = "{a6c54c02-d46c-44de-b629-69663ef2ccd1}|WcfLibrary.dll;{47D48CC7-FE3E-48C1-89E7-58BDBE9F4C8A}|BusinessLayer.dll;{D6636803-B147-45B1-B0CE-8626EB980F5F}|DataAccessLayer.dll;{A9CB6E8E-913D-4DDD-A294-3E00DFAA4468}|EntitiesLayer.dll;{37E95C17-424E-4936-BB51-BB344D0B8284}|NorthwindInterfaces.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/localhost_51369"
 		Debug.AspNetCompiler.PhysicalPath = "Northwind.WcfIISHost\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_51369\"
@@ -27,6 +28,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Northwind.WcfIISHost(1)", "
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
 		VWDPort = "51369"
+		SlnRelativePath = "Northwind.WcfIISHost\"
 		DefaultWebSiteLanguage = "Visual C#"
 	EndProjectSection
 EndProject
