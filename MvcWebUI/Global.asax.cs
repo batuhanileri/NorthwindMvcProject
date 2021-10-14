@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MvcWebUI.Infrastructure.Ninject;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -16,6 +17,8 @@ namespace MvcWebUI
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            ControllerBuilder.Current.SetControllerFactory(new NinjectControllerFactory());//artık başlarken default değil ninject ile başlıcak
         }
     }
 }

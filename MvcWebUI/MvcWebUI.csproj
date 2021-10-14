@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -45,7 +46,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Ninject, Version=3.3.4.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.3.4\lib\net45\Ninject.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -121,9 +131,11 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\Ninject\NinjectControllerFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -131,12 +143,113 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="ecommerce-html-template\cart.html" />
+    <Content Include="ecommerce-html-template\checkout.html" />
+    <Content Include="ecommerce-html-template\contact.html" />
+    <Content Include="ecommerce-html-template\css\style.css" />
+    <Content Include="ecommerce-html-template\ecommerce-html-template.jpg" />
+    <Content Include="ecommerce-html-template\img\brand-1.png" />
+    <Content Include="ecommerce-html-template\img\brand-2.png" />
+    <Content Include="ecommerce-html-template\img\brand-3.png" />
+    <Content Include="ecommerce-html-template\img\brand-4.png" />
+    <Content Include="ecommerce-html-template\img\brand-5.png" />
+    <Content Include="ecommerce-html-template\img\brand-6.png" />
+    <Content Include="ecommerce-html-template\img\category-1.jpg" />
+    <Content Include="ecommerce-html-template\img\category-2.jpg" />
+    <Content Include="ecommerce-html-template\img\category-3.jpg" />
+    <Content Include="ecommerce-html-template\img\category-4.jpg" />
+    <Content Include="ecommerce-html-template\img\category-5.jpg" />
+    <Content Include="ecommerce-html-template\img\category-6.jpg" />
+    <Content Include="ecommerce-html-template\img\category-7.jpg" />
+    <Content Include="ecommerce-html-template\img\category-8.jpg" />
+    <Content Include="ecommerce-html-template\img\godaddy.svg" />
+    <Content Include="ecommerce-html-template\img\logo.png" />
+    <Content Include="ecommerce-html-template\img\norton.svg" />
+    <Content Include="ecommerce-html-template\img\payment-method.png" />
+    <Content Include="ecommerce-html-template\img\product-1.jpg" />
+    <Content Include="ecommerce-html-template\img\product-10.jpg" />
+    <Content Include="ecommerce-html-template\img\product-2.jpg" />
+    <Content Include="ecommerce-html-template\img\product-3.jpg" />
+    <Content Include="ecommerce-html-template\img\product-4.jpg" />
+    <Content Include="ecommerce-html-template\img\product-5.jpg" />
+    <Content Include="ecommerce-html-template\img\product-6.jpg" />
+    <Content Include="ecommerce-html-template\img\product-7.jpg" />
+    <Content Include="ecommerce-html-template\img\product-8.jpg" />
+    <Content Include="ecommerce-html-template\img\product-9.jpg" />
+    <Content Include="ecommerce-html-template\img\review-1.jpg" />
+    <Content Include="ecommerce-html-template\img\review-2.jpg" />
+    <Content Include="ecommerce-html-template\img\review-3.jpg" />
+    <Content Include="ecommerce-html-template\img\slider-1.jpg" />
+    <Content Include="ecommerce-html-template\img\slider-2.jpg" />
+    <Content Include="ecommerce-html-template\img\slider-3.jpg" />
+    <Content Include="ecommerce-html-template\img\ssl.svg" />
+    <Content Include="ecommerce-html-template\index.html" />
+    <Content Include="ecommerce-html-template\js\main.js" />
+    <Content Include="ecommerce-html-template\lib\easing\easing.js" />
+    <Content Include="ecommerce-html-template\lib\easing\easing.min.js" />
+    <Content Include="ecommerce-html-template\lib\slick\ajax-loader.gif" />
+    <Content Include="ecommerce-html-template\lib\slick\fonts\slick.svg" />
+    <Content Include="ecommerce-html-template\lib\slick\slick-theme.css" />
+    <Content Include="ecommerce-html-template\lib\slick\slick.css" />
+    <Content Include="ecommerce-html-template\lib\slick\slick.js" />
+    <Content Include="ecommerce-html-template\lib\slick\slick.min.js" />
+    <Content Include="ecommerce-html-template\LICENSE.txt" />
+    <Content Include="ecommerce-html-template\login.html" />
+    <Content Include="ecommerce-html-template\my-account.html" />
+    <Content Include="ecommerce-html-template\product-detail.html" />
+    <Content Include="ecommerce-html-template\product-list.html" />
+    <Content Include="ecommerce-html-template\READ-ME.txt" />
+    <Content Include="ecommerce-html-template\wishlist.html" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="HTML - Scorilo 1.0.1\checkout.html" />
+    <Content Include="HTML - Scorilo 1.0.1\contact.html" />
+    <Content Include="HTML - Scorilo 1.0.1\contact.php" />
+    <Content Include="HTML - Scorilo 1.0.1\css\bootstrap-theme.css" />
+    <Content Include="HTML - Scorilo 1.0.1\css\bootstrap-theme.min.css" />
+    <Content Include="HTML - Scorilo 1.0.1\css\bootstrap.css" />
+    <Content Include="HTML - Scorilo 1.0.1\css\bootstrap.min.css" />
+    <Content Include="HTML - Scorilo 1.0.1\css\style.css" />
+    <Content Include="HTML - Scorilo 1.0.1\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="HTML - Scorilo 1.0.1\images\homeimg.jpg" />
+    <Content Include="HTML - Scorilo 1.0.1\images\menu.png" />
+    <Content Include="HTML - Scorilo 1.0.1\images\product1-1.jpg" />
+    <Content Include="HTML - Scorilo 1.0.1\images\product1.jpg" />
+    <Content Include="HTML - Scorilo 1.0.1\images\product2-2.jpg" />
+    <Content Include="HTML - Scorilo 1.0.1\images\product2-3.jpg" />
+    <Content Include="HTML - Scorilo 1.0.1\images\product2.jpg" />
+    <Content Include="HTML - Scorilo 1.0.1\images\product3.png" />
+    <Content Include="HTML - Scorilo 1.0.1\images\scorilo2-70x70.jpg" />
+    <Content Include="HTML - Scorilo 1.0.1\index.html" />
+    <Content Include="HTML - Scorilo 1.0.1\js\anim.js" />
+    <Content Include="HTML - Scorilo 1.0.1\js\bootstrap.js" />
+    <Content Include="HTML - Scorilo 1.0.1\js\bootstrap.min.js" />
+    <Content Include="HTML - Scorilo 1.0.1\js\jquery-.js" />
+    <Content Include="HTML - Scorilo 1.0.1\js\npm.js" />
+    <Content Include="HTML - Scorilo 1.0.1\js\validate.js" />
+    <Content Include="HTML - Scorilo 1.0.1\license.txt" />
+    <Content Include="HTML - Scorilo 1.0.1\product.html" />
+    <Content Include="HTML - Scorilo 1.0.1\shop.html" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="HTML - Scorilo 1.0.1\css\bootstrap-theme.css.map" />
+    <Content Include="HTML - Scorilo 1.0.1\css\bootstrap-theme.min.css.map" />
+    <Content Include="HTML - Scorilo 1.0.1\css\bootstrap.css.map" />
+    <Content Include="HTML - Scorilo 1.0.1\css\bootstrap.min.css.map" />
+    <Content Include="HTML - Scorilo 1.0.1\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="HTML - Scorilo 1.0.1\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="HTML - Scorilo 1.0.1\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="HTML - Scorilo 1.0.1\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="ecommerce-html-template\lib\slick\config.rb" />
+    <Content Include="ecommerce-html-template\lib\slick\fonts\slick.eot" />
+    <Content Include="ecommerce-html-template\lib\slick\fonts\slick.ttf" />
+    <Content Include="ecommerce-html-template\lib\slick\fonts\slick.woff" />
+    <Content Include="ecommerce-html-template\lib\slick\slick-theme.less" />
+    <Content Include="ecommerce-html-template\lib\slick\slick-theme.scss" />
+    <Content Include="ecommerce-html-template\lib\slick\slick.less" />
+    <Content Include="ecommerce-html-template\lib\slick\slick.scss" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -148,6 +261,37 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="shop-around\css\ie6.css" />
+    <Content Include="shop-around\css\images\big1.jpg" />
+    <Content Include="shop-around\css\images\big2.jpg" />
+    <Content Include="shop-around\css\images\big3.jpg" />
+    <Content Include="shop-around\css\images\body.gif" />
+    <Content Include="shop-around\css\images\bul.gif" />
+    <Content Include="shop-around\css\images\cart-link.gif" />
+    <Content Include="shop-around\css\images\cat.gif" />
+    <Content Include="shop-around\css\images\h2-arr.gif" />
+    <Content Include="shop-around\css\images\header.gif" />
+    <Content Include="shop-around\css\images\ico1.gif" />
+    <Content Include="shop-around\css\images\ico2.gif" />
+    <Content Include="shop-around\css\images\ico3.gif" />
+    <Content Include="shop-around\css\images\ico4.gif" />
+    <Content Include="shop-around\css\images\info.png" />
+    <Content Include="shop-around\css\images\logo.gif" />
+    <Content Include="shop-around\css\images\next.gif" />
+    <Content Include="shop-around\css\images\prev.gif" />
+    <Content Include="shop-around\css\images\slide1.jpg" />
+    <Content Include="shop-around\css\images\small1.jpg" />
+    <Content Include="shop-around\css\images\small2.jpg" />
+    <Content Include="shop-around\css\images\small3.jpg" />
+    <Content Include="shop-around\css\images\small4.jpg" />
+    <Content Include="shop-around\css\images\small5.jpg" />
+    <Content Include="shop-around\css\images\small6.jpg" />
+    <Content Include="shop-around\css\images\small7.jpg" />
+    <Content Include="shop-around\css\style.css" />
+    <Content Include="shop-around\index.html" />
+    <Content Include="shop-around\js\jquery-1.4.1.min.js" />
+    <Content Include="shop-around\js\jquery-func.js" />
+    <Content Include="shop-around\js\jquery.jcarousel.pack.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -158,10 +302,11 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Product\Index.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -179,6 +324,24 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BusinessLayer\BusinessLayer.csproj">
+      <Project>{47D48CC7-FE3E-48C1-89E7-58BDBE9F4C8A}</Project>
+      <Name>BusinessLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.csproj">
+      <Project>{D6636803-B147-45B1-B0CE-8626EB980F5F}</Project>
+      <Name>DataAccessLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EntitiesLayer\EntitiesLayer.csproj">
+      <Project>{A9CB6E8E-913D-4DDD-A294-3E00DFAA4468}</Project>
+      <Name>EntitiesLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NorthwindInterfaces\NorthwindInterfaces.csproj">
+      <Project>{37E95C17-424E-4936-BB51-BB344D0B8284}</Project>
+      <Name>NorthwindInterfaces</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -213,7 +376,10 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
   </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
