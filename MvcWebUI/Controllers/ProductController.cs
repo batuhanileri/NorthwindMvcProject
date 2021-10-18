@@ -1,7 +1,9 @@
 ﻿using BusinessLayer.Concrete;
 using DataAccessLayer.Concrete.EntityFramework;
 using EntitiesLayer;
+using MvcWebUI.Models;
 using NorthwindInterfaces;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,11 +21,12 @@ namespace MvcWebUI.Controllers
         {
             _productService = productService;
         }
-
-        public ActionResult Index()
+        public int PageSize = 6;
+        public ActionResult Index(int page=1)
         {
-            List<Product> values = _productService.GetAll();
-            return View(values);
+            var products = _productService.GetAll().ToPagedList(page, 6);
+
+            return View(products);
         }
     }
 }

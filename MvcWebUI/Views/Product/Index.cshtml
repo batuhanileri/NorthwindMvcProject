@@ -1,83 +1,23 @@
-﻿@model List<EntitiesLayer.Product>
+﻿@using EntitiesLayer
+@model PagedList.IPagedList<Product>
+
+@using PagedList
+@using PagedList.Mvc
 
 @{
     ViewBag.Title = "Index";
-    Layout = null;
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 
-
-@{
-    Layout = null;
-}
 <!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="">
-    <link href="~/HTML - Scorilo 1.0.1/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
-    <link href="~/HTML - Scorilo 1.0.1/css/style.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Dosis:200,300,400,500,600,700" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:200,300,400,500,600,700" rel="stylesheet">
-
-</head>
 <body>
 
-    <!-- HEADER =============================-->
-    <header class="item header margin-top-0">
-        <div class="wrapper">
-            <nav role="navigation" class="navbar navbar-white navbar-embossed navbar-lg navbar-fixed-top">
-                <div class="container">
-                    <div class="navbar-header">
-                        <button data-target="#navbar-collapse-02" data-toggle="collapse" class="navbar-toggle" type="button">
-                            <i class="fa fa-bars"></i>
-                            <span class="sr-only">Toggle navigation</span>
-                        </button>
-                        <a href="index.html" class="navbar-brand brand"> SCORILO </a>
-                    </div>
-                    <div id="navbar-collapse-02" class="collapse navbar-collapse">
-                        <ul class="nav navbar-nav navbar-right">
-                            <li class="propClone"><a href="index.html">Home</a></li>
-                            <li class="propClone"><a href="shop.html">Shop</a></li>
-                            <li class="propClone"><a href="product.html">Product</a></li>
-                            <li class="propClone"><a href="checkout.html">Checkout</a></li>
-                            <li class="propClone"><a href="contact.html">Contact</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12 text-center">
-                        <div class="text-pageheader">
-                            <div class="subtext-image" data-scrollreveal="enter bottom over 1.7s after 0.1s">
-                                Shop
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-
     <!-- CONTENT =============================-->
-    <section class="item content">
-        <div class="container toparea">
-            <div class="underlined-title">
-                <div class="editContent">
-                    <h1 class="text-center latestitems">OUR PRODUCTS</h1>
-                </div>
-                <div class="wow-hr type_short">
-                    <span class="wow-hr-h">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                    </span>
-                </div>
-            </div>
-            
+    
+        <div class="col-md-10">
+          
+
             <div class="row">
                 @foreach (var item in Model)
                 {
@@ -112,12 +52,26 @@
                     <!-- /.productbox -->
                     <!-- /.productbox -->
                 }
-                </div>
-
             </div>
-        
-    </section>
 
+        </div>
+
+    </section>
+    <style>
+        #deneme {
+        width: 600px;
+        
+        margin: auto;
+        }
+    </style>
+    <div id="deneme">
+        @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }), new PagedListRenderOptions
+   {
+
+   LiElementClasses = new List<string> { "page-link" }
+   })
+    </div>
+    <br />
     <!-- CALL TO ACTION =============================-->
     <section class="content-block" style="background-color:#00bba7;">
         <div class="container text-center">
@@ -154,7 +108,7 @@
             </div>
         </div>
     </div>
-    
+
     <!-- Load JS here for greater good =============================-->
     <script src="~/HTML - Scorilo 1.0.1/js/jquery-.js"></script>
     <script src="~/HTML - Scorilo 1.0.1/js/bootstrap.min.js"></script>
@@ -172,7 +126,7 @@
             );
         });
     </script>
-</body>
-</html>
 
+
+</body>
 

@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
+
 namespace MvcWebUI.Infrastructure.Ninject
 {
     //Dependency Injection
@@ -28,9 +29,10 @@ namespace MvcWebUI.Infrastructure.Ninject
 
         private void AddBllBindings()
         {
-            _ninjectKernel.Bind<IProductService>().To<ProductManager>().WithConstructorArgument("productDal",new EfProductDal());//IProductService istenen yerde ProductManagere erişmesini sağla onu ver
-        }
+            _ninjectKernel.Bind<IProductService>().To<ProductManager>().WithConstructorArgument("productDal", new EfProductDal());//IProductService istenen yerde ProductManagere erişmesini sağla onu ver
 
+            _ninjectKernel.Bind<ICategoryService>().To<CategoryManager>().WithConstructorArgument("categoryDal", new EfCategoryDal());
+        }
         protected override IController GetControllerInstance(RequestContext requestContext, Type controllerType)
         {
             return controllerType == null ? null : (IController)_ninjectKernel.Get(controllerType);

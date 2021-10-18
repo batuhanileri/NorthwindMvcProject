@@ -1,0 +1,17 @@
+﻿
+@model List<EntitiesLayer.Category>
+    <style>
+        .ortala2 {
+            text-align: center;
+        }
+    </style>
+<p class="ortala2"><b>KATEGORİLER</b></p>
+@foreach (var item in Model)
+{
+<tr>
+    <td>
+        @Html.RouteLink(item.CategoryName, new { controller = "Product", action = "Index" })
+        <br />
+    </td>
+</tr>
+}
