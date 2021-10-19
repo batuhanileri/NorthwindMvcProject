@@ -1,7 +1,8 @@
 ﻿using EntitiesLayer;
+using PagedList;
 using System.Collections.Generic;
 
-namespace MvcWebUI.Models
+namespace MvcWebUI
 {
     public class ProductViewModel
     {

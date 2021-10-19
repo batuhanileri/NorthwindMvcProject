@@ -15,9 +15,10 @@ namespace MvcWebUI.Controllers
         {
            _categoryService = categoryService;
         }
-
-        public PartialViewResult List()
+        
+        public PartialViewResult List(int category=0)
         {
+            ViewBag.CurrentCategory = category;
             return PartialView(_categoryService.GetAll());
         }
     }

@@ -6,11 +6,13 @@
         }
     </style>
 <p class="ortala2"><b>KATEGORİLER</b></p>
+@Html.RouteLink("AnaSayfa",new {controller="Product",action="Index",category=0},new { @class = ViewBag.CurrentCategory == 0 ? "selected" : null })
 @foreach (var item in Model)
 {
 <tr>
     <td>
-        @Html.RouteLink(item.CategoryName, new { controller = "Product", action = "Index" })
+        @Html.RouteLink(item.CategoryName, new {category=item.CategoryID , controller = "Product", action = "Index" },
+                                 new { @class=item.CategoryID ==ViewBag.CurrentCategory?"selected":null})
         <br />
     </td>
 </tr>

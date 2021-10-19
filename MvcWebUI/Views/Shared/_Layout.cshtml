@@ -39,8 +39,9 @@
                     </div>
                     <div id="navbar-collapse-02" class="collapse navbar-collapse">
                         <ul class="nav navbar-nav navbar-right ">
-                            <li class="propClone"><a href="shop.html">Mağaza</a></li>
-                            <li class="propClone"><a href="product.html">Ürünler</a></li>
+                            
+
+                            <li class="propClone">@Html.RouteLink("AnaSayfa", new { controller = "Product", action = "Index", category = 0 })</li>
                             <li class="propClone"><a href="checkout.html">Ödeme</a></li>
                             <li class="propClone"><a href="contact.html">İletisim</a></li>
                             <li class="propClone"><a href="contact.html">Giris Yap</a></li>
